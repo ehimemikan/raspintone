@@ -1,10 +1,13 @@
 import json
+import os
 import requests
 import yaml
 
 class Client:
     def __init__(self):
-        with open('kintone.yml') as f:
+        base = os.path.dirname(os.path.abspath(__file__))
+        yml_path = os.path.normpath(os.path.join(base, './kintone.yml'))
+        with open(yml_path) as f:
             env = yaml.load(f)
             self.url = env['url'] # https://domain.cybozu.com/k/
             self.app_id = env['app_id']
